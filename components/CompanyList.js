@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import {
   Container,
   Stack,
@@ -14,13 +16,11 @@ import {
   CardFooter,
   Heading,
   Text,
-  Button,
-  AspectRatio,
   Image,
   Flex,
-  IconButton,
   Link,
   Spinner,
+  Select,
 } from "@chakra-ui/react";
 import {
   ArrowForwardIcon,
@@ -39,22 +39,32 @@ export const ReturnsIcon = createIcon({
     />
   ),
 });
-import useSWR from "swr";
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function CompanyList() {
-  const { data, error } = useSWR(
-    "https://opensheet.elk.sh/10nLZz7OlrF3iV_whdC8feNTC0CENjKDd3FbNDiOVhzE/1",
-    fetcher
-  );
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    fetch(
+      "https://opensheet.elk.sh/10nLZz7OlrF3iV_whdC8feNTC0CENjKDd3FbNDiOVhzE/1"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const modifiedData = data.map((el) => {
+          const classes = el.CLASS.split(",");
+          if (classes.length > 1) {
+            el.showClass = "Multi asset";
+          } else {
+            el.showClass = classes[0];
+          }
+          return el;
+        });
+        setData(modifiedData);
+        setLoading(false);
+      });
+  }, []);
 
-  if (error)
-    return (
-      <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
-        Failed to load
-      </Container>
-    );
-  if (!data)
+  if (isLoading)
     return (
       <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
         <Flex alignItems={"center"} justifyContent={"center"}>
@@ -62,41 +72,135 @@ export default function CompanyList() {
         </Flex>
       </Container>
     );
-  const modifiedData = data.map((el) => {
-    const classes = el.CLASS.split(",");
-    if (classes.length > 1) {
-      el.showClass = "Multi asset";
-    } else {
-      el.showClass = classes[0];
-    }
-    return el;
-  });
+
   return (
     <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
-      <Stack spacing={4}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <SearchIcon color="white" />
-          </InputLeftElement>
-          <Input
-            type="tel"
-            placeholder="Search by company name, asset classes"
-            color={"white"}
-            // _placeholder={{ color: "inherit" }}
-          />
-        </InputGroup>
-      </Stack>
+      <Box
+        position="sticky"
+        top={"0"}
+        left={"0"}
+        zIndex={"1000"}
+        backgroundColor={"#1D1D1D"}
+        py={"5"}
+      >
+        <Stack spacing={4}>
+          <InputGroup border={"1px solid #ffffff1a"} borderRadius="md">
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color="#ffffff1a" _hover={{ color: "#000000" }} />
+            </InputLeftElement>
+            <Input
+              type="tel"
+              placeholder="Search by company name, asset classes"
+              color={"white"}
+              outline={"none"}
+              _focusVisible={{ shadow: "outline" }}
+              _focus={{ shadow: "none" }}
+              _placeholder={{ color: "#ffffff1a" }}
+            />
+          </InputGroup>
+        </Stack>
+        <Flex py={"10"} justifyContent={"space-between"} alignItems={"center"}>
+          <Box
+            display={{ xl: "block", md: "block", sm: "none", base: "none" }}
+            flex={"1"}
+          >
+            <Heading size={"sm"} color={"#ffffffb3"}>
+              Found:{" "}
+              <Text as={"span"} color={"white"}>
+                {data.length} results
+              </Text>
+            </Heading>
+          </Box>
+          <Flex
+            flex={"1"}
+            justifyContent={{
+              sm: "flex-start",
+              md: "flex-start",
+              lg: "flex-end",
+              xl: "flex-end",
+            }}
+          >
+            <Flex
+              border={"1px solid #ffffff1a"}
+              backgroundColor={"#ffffff1a"}
+              borderRadius="md"
+              width={{ sm: "50%", md: "50%", lg: "30%", xl: "30%" }}
+              p={"1"}
+            >
+              <Text
+                width={"30%"}
+                size={"sm"}
+                color={"#ffffffb3"}
+                alignSelf={"center"}
+              >
+                Show
+              </Text>
+              <Select
+                placeholder="Select option"
+                size={"sm"}
+                color={"white"}
+                borderRadius={"md"}
+                border={"none"}
+                outline={"none"}
+                _focusVisible={{ shadow: "outline" }}
+                _focus={{ shadow: "none" }}
+                width={"60%"}
+              >
+                <option selected="selected" value="option1">
+                  Option 1
+                </option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </Select>
+            </Flex>
+            <Flex
+              border={"1px solid #ffffff1a"}
+              backgroundColor={"#ffffff1a"}
+              borderRadius="md"
+              width={{ sm: "50%", md: "50%", lg: "30%", xl: "30%" }}
+              p={"1"}
+              marginLeft={"5"}
+            >
+              <Text
+                width={"30%"}
+                size={"sm"}
+                color={"#ffffffb3"}
+                alignSelf={"center"}
+              >
+                Sort by
+              </Text>
+              <Select
+                placeholder="Select option"
+                size={"sm"}
+                color={"white"}
+                borderRadius={"md"}
+                border={"none"}
+                outline={"none"}
+                _focusVisible={{ shadow: "outline" }}
+                _focus={{ shadow: "none" }}
+                width={"60%"}
+              >
+                <option selected="selected" value="option1">
+                  Option 1
+                </option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </Select>
+            </Flex>
+          </Flex>
+        </Flex>
+      </Box>
       <SimpleGrid
         spacing={8}
         templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
         py={"10"}
       >
-        {modifiedData.map((el, index) => (
+        {data.map((el, index) => (
           <Card key={index} backgroundColor={"#222222"}>
             <CardHeader>
               {/* <AspectRatio maxW="80px" ratio={4 / 3}> */}
               <Flex justifyContent={"space-between"}>
-                <Box backgroundColor={"white"} borderRadius={"md"} p={"1"}>
+                <Box backgroundColor={"white"} borderRadius={"md"}>
                   <Image
                     src={el["LOGO LINK"]}
                     alt="naruto"
