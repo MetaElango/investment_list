@@ -18,7 +18,7 @@ import {
 
 export default function Hero() {
   return (
-    <Container maxW={"7xl"} backgroundColor={"#343434"}>
+    <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
       <Stack
         align={"start"}
         spacing={{ base: 8, md: 10 }}

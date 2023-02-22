@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
         head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body style={{ backgroundColor: "#343434" }}>
+      <body style={{ backgroundColor: "#1D1D1D" }}>
         <CacheProvider>
           <ChakraProvider>
             {/* <Navbar /> */}

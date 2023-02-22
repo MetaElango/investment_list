@@ -50,13 +50,13 @@ export default function CompanyList() {
 
   if (error)
     return (
-      <Container maxW={"7xl"} backgroundColor={"#343434"}>
+      <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
         Failed to load
       </Container>
     );
   if (!data)
     return (
-      <Container maxW={"7xl"} backgroundColor={"#343434"}>
+      <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
         <Flex alignItems={"center"} justifyContent={"center"}>
           <Spinner color="white" size={"xl"} />
         </Flex>
@@ -72,7 +72,7 @@ export default function CompanyList() {
     return el;
   });
   return (
-    <Container maxW={"7xl"} backgroundColor={"#343434"}>
+    <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
       <Stack spacing={4}>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
