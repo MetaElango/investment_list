@@ -42,6 +42,8 @@ export const ReturnsIcon = createIcon({
 
 export default function CompanyList() {
   const [data, setData] = useState([]);
+  const [initialList, setInitialList] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
@@ -61,9 +63,31 @@ export default function CompanyList() {
         });
         setData(modifiedData);
         setLoading(false);
+        setInitialList(modifiedData);
       });
   }, []);
+  useEffect(() => {
+    console.log("searchText", searchText);
+    searchFilter(initialList);
+  }, [searchText]);
 
+  const searchFilter = (data) => {
+    const search = searchText.toLowerCase();
+    const filteredList = [];
+    data.forEach((el) => {
+      const company = el["COMPANY NAME"].toLowerCase();
+      const assetClass = el["CLASS"].toLowerCase();
+
+      if (assetClass.includes(search) || company.includes(search)) {
+        filteredList.push(el);
+      }
+    });
+    if (search.length > 0) {
+      setData(filteredList);
+    } else {
+      setData(initialList);
+    }
+  };
   if (isLoading)
     return (
       <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
@@ -96,6 +120,10 @@ export default function CompanyList() {
               _focusVisible={{ shadow: "outline" }}
               _focus={{ shadow: "none" }}
               _placeholder={{ color: "#ffffff1a" }}
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
             />
           </InputGroup>
         </Stack>
@@ -195,8 +223,8 @@ export default function CompanyList() {
         templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
         py={"10"}
       >
-        {data.map((el, index) => (
-          <Card key={index} backgroundColor={"#222222"}>
+        {data.map((el) => (
+          <Card key={el["RANDOM ID"]} backgroundColor={"#222222"}>
             <CardHeader>
               {/* <AspectRatio maxW="80px" ratio={4 / 3}> */}
               <Flex justifyContent={"space-between"}>
@@ -297,110 +325,6 @@ export default function CompanyList() {
             </CardFooter>
           </Card>
         ))}
-        <Card backgroundColor={"#222222"}>
-          <CardHeader>
-            {/* <AspectRatio maxW="80px" ratio={4 / 3}> */}
-            <Flex justifyContent={"space-between"}>
-              <Box backgroundColor={"white"} borderRadius={"md"} p={"1"}>
-                <Image
-                  src="https://files.pixpa.com/117214/1676278410205-3664.png"
-                  alt="naruto"
-                  objectFit="cover"
-                  width={"50px"}
-                />
-              </Box>
-              <Box>
-                <Link
-                  href="https://hedonova.io"
-                  isExternal
-                  backgroundColor={"#ffffff1a"}
-                  p="1"
-                  borderRadius={"md"}
-                  _hover={{
-                    backgroundColor: "#D1ED82",
-                  }}
-                >
-                  <ArrowForwardIcon
-                    transform={"rotate(320deg)"}
-                    color={"white"}
-                    width={"19px"}
-                    height={"20px"}
-                    _hover={{
-                      color: "black",
-                    }}
-                  />
-                </Link>
-              </Box>
-            </Flex>
-
-            {/* </AspectRatio> */}
-          </CardHeader>
-          <CardBody>
-            <Heading py={"1"} size="lg" color={"white"}>
-              Hedonova
-            </Heading>
-            <Text py={"1"} color={"#ffffffb3"}>
-              Hedonova is an open-access hedge fund that invests in a wide range
-              of alternative assets, including startups, NFTs, real estate in
-              emerging markets, art, and more. With investors from 18 countries,
-              the company offers a unique opportunity for individuals to access
-              the benefits of alternative asset investments.{" "}
-            </Text>
-            <Box
-              borderTop={"1px solid #ffffff1a"}
-              borderBottom={"1px solid #ffffff1a"}
-              my={"3"}
-              py={"3"}
-            >
-              <Heading py={"1"} size="sm" color={"#ffffffb3"}>
-                Minimum investment:
-                <Text as={"span"} color={"#D1ED82"}>
-                  &nbsp; $10,000
-                </Text>
-              </Heading>
-            </Box>
-          </CardBody>
-          <CardFooter>
-            <Box
-              color={"white"}
-              p={"2"}
-              borderRadius={"md"}
-              border={"1px solid #ffffff1a"}
-            >
-              <Flex>
-                <Text>Multiasset</Text>
-              </Flex>
-            </Box>
-            <Box
-              color={"white"}
-              p={"2"}
-              borderRadius={"md"}
-              border={"1px solid #ffffff1a"}
-              mx={"3"}
-            >
-              <Flex alignItems={"center"}>
-                <StarIcon />
-                <Text marginLeft={"2"}>4.8</Text>
-              </Flex>
-            </Box>
-            <Box
-              color={"white"}
-              p={"2"}
-              borderRadius={"md"}
-              border={"1px solid #ffffff1a"}
-            >
-              <Flex alignItems={"center"}>
-                <ReturnsIcon />
-                <Text marginLeft={"2"}>
-                  Returns{" "}
-                  <Text color={"#D1ED82"} as={"span"}>
-                    105%
-                  </Text>
-                </Text>
-              </Flex>
-            </Box>
-          </CardFooter>
-        </Card>
       </SimpleGrid>
     </Container>
   );
