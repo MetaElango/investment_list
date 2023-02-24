@@ -45,6 +45,12 @@ export default function CompanyList() {
   const [initialList, setInitialList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [classes, setClasses] = useState([]);
+  const sortBy = [
+    { type: "top5", name: "Top 5" },
+    { type: "ratings", name: "Ratings: High to Low" },
+    { type: "returns", name: "Returns: High to Low" },
+  ];
   useEffect(() => {
     setLoading(true);
     fetch(
@@ -52,18 +58,28 @@ export default function CompanyList() {
     )
       .then((res) => res.json())
       .then((data) => {
+        const assetClasses = {};
+        const assetClassesArr = [];
         const modifiedData = data.map((el) => {
           const classes = el.CLASS.split(",");
           if (classes.length > 1) {
             el.showClass = "Multi asset";
+            classes.forEach((element) => {
+              assetClasses[element] = true;
+            });
           } else {
             el.showClass = classes[0];
+            assetClasses[classes[0]] = true;
           }
           return el;
         });
         setData(modifiedData);
         setLoading(false);
         setInitialList(modifiedData);
+        for (const [key, value] of Object.entries(assetClasses)) {
+          assetClassesArr.push(key);
+        }
+        setClasses(assetClassesArr);
       });
   }, []);
   useEffect(() => {
@@ -148,73 +164,80 @@ export default function CompanyList() {
               xl: "flex-end",
             }}
           >
-            <Flex
+            <Box
               border={"1px solid #ffffff1a"}
               backgroundColor={"#ffffff1a"}
               borderRadius="md"
-              width={{ sm: "50%", md: "50%", lg: "30%", xl: "30%" }}
+              // width={{ sm: "50%", md: "50%", lg: "30%", xl: "30%" }}
               p={"1"}
             >
               <Text
-                width={"30%"}
                 size={"sm"}
                 color={"#ffffffb3"}
                 alignSelf={"center"}
+                as={"span"}
               >
                 Show
               </Text>
-              <Select
-                placeholder="Select option"
-                size={"sm"}
-                color={"white"}
-                borderRadius={"md"}
-                border={"none"}
-                outline={"none"}
-                _focusVisible={{ shadow: "outline" }}
-                _focus={{ shadow: "none" }}
-                width={"60%"}
-              >
-                <option selected="selected" value="option1">
-                  Option 1
-                </option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </Select>
-            </Flex>
-            <Flex
+              <Box display={"inline-block"}>
+                <Select
+                  placeholder="All asset classes"
+                  size={"sm"}
+                  color={"white"}
+                  borderRadius={"md"}
+                  border={"none"}
+                  outline={"none"}
+                  _focusVisible={{ shadow: "outline" }}
+                  _focus={{ shadow: "none" }}
+                >
+                  {classes.map((singleClass) => (
+                    <option key={singleClass} value={singleClass}>
+                      {singleClass}
+                    </option>
+                  ))}
+                </Select>
+              </Box>
+            </Box>
+            <Box
               border={"1px solid #ffffff1a"}
               backgroundColor={"#ffffff1a"}
               borderRadius="md"
-              width={{ sm: "50%", md: "50%", lg: "30%", xl: "30%" }}
+              // width={{ sm: "50%", md: "50%", lg: "30%", xl: "30%" }}
               p={"1"}
               marginLeft={"5"}
             >
               <Text
-                width={"30%"}
+                // width={"30%"}
                 size={"sm"}
                 color={"#ffffffb3"}
                 alignSelf={"center"}
+                as={"span"}
               >
                 Sort by
               </Text>
-              <Select
-                placeholder="Select option"
-                size={"sm"}
-                color={"white"}
-                borderRadius={"md"}
-                border={"none"}
-                outline={"none"}
-                _focusVisible={{ shadow: "outline" }}
-                _focus={{ shadow: "none" }}
-                width={"60%"}
-              >
-                <option selected="selected" value="option1">
-                  Option 1
-                </option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </Select>
-            </Flex>
+              <Box display={"inline-block"}>
+                <Select
+                  // placeholder="Select option"
+                  size={"sm"}
+                  color={"white"}
+                  borderRadius={"md"}
+                  border={"none"}
+                  outline={"none"}
+                  _focusVisible={{ shadow: "outline" }}
+                  _focus={{ shadow: "none" }}
+                >
+                  {sortBy.map((sortByEl, index) => (
+                    <option
+                      selected={index === 2}
+                      key={sortByEl.type}
+                      value={sortByEl.type}
+                    >
+                      {sortByEl.name}
+                    </option>
+                  ))}
+                </Select>
+              </Box>
+            </Box>
           </Flex>
         </Flex>
       </Box>
