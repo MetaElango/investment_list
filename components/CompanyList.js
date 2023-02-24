@@ -269,7 +269,7 @@ export default function CompanyList() {
               <Text py={"1"} color={"#ffffffb3"}>
                 {el["DESCRIPTION"]}
               </Text>
-              <Box
+              {/* <Box
                 borderTop={"1px solid #ffffff1a"}
                 borderBottom={"1px solid #ffffff1a"}
                 my={"3"}
@@ -281,47 +281,66 @@ export default function CompanyList() {
                     &nbsp; {el["MINIMUM INVESTMENT"]}
                   </Text>
                 </Heading>
-              </Box>
+              </Box> */}
             </CardBody>
-            <CardFooter>
+            <CardFooter flexDirection={"column"}>
               <Box
                 color={"white"}
                 p={"2"}
                 borderRadius={"md"}
                 border={"1px solid #ffffff1a"}
-              >
-                <Flex>
-                  <Text>{el.showClass}</Text>
-                </Flex>
-              </Box>
-              <Box
-                color={"white"}
-                p={"2"}
-                borderRadius={"md"}
-                border={"1px solid #ffffff1a"}
-                mx={"3"}
-              >
-                <Flex alignItems={"center"}>
-                  <StarIcon />
-                  <Text marginLeft={"2"}>{el.RATINGS}</Text>
-                </Flex>
-              </Box>
-              <Box
-                color={"white"}
-                p={"2"}
-                borderRadius={"md"}
-                border={"1px solid #ffffff1a"}
+                // width={"50%"}
               >
                 <Flex alignItems={"center"}>
                   <ReturnsIcon />
                   <Text marginLeft={"2"}>
-                    Returns{" "}
+                    Minimum investment{" "}
                     <Text color={"#D1ED82"} as={"span"}>
-                      105%
+                      &nbsp; {el["MINIMUM INVESTMENT"]}{" "}
                     </Text>
                   </Text>
                 </Flex>
               </Box>
+              <Flex marginTop={"5"}>
+                <Box
+                  color={"white"}
+                  p={"2"}
+                  borderRadius={"md"}
+                  border={"1px solid #ffffff1a"}
+                >
+                  <Flex>
+                    <Text>{el.showClass}</Text>
+                  </Flex>
+                </Box>
+                <Box
+                  color={"white"}
+                  p={"2"}
+                  borderRadius={"md"}
+                  border={"1px solid #ffffff1a"}
+                  mx={"3"}
+                >
+                  <Flex alignItems={"center"}>
+                    <StarIcon />
+                    <Text marginLeft={"2"}>{el.RATINGS}</Text>
+                  </Flex>
+                </Box>
+                <Box
+                  color={"white"}
+                  p={"2"}
+                  borderRadius={"md"}
+                  border={"1px solid #ffffff1a"}
+                >
+                  <Flex alignItems={"center"}>
+                    <ReturnsIcon />
+                    <Text marginLeft={"2"}>
+                      Returns{" "}
+                      <Text color={"#D1ED82"} as={"span"}>
+                        105%
+                      </Text>
+                    </Text>
+                  </Flex>
+                </Box>
+              </Flex>
             </CardFooter>
           </Card>
         ))}
