@@ -46,6 +46,7 @@ export default function CompanyList() {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [classes, setClasses] = useState([]);
+  const [show, setShow] = useState("allAssetClasses");
   const sortBy = [
     { type: "top5", name: "Top 5" },
     { type: "ratings", name: "Ratings: High to Low" },
@@ -71,6 +72,7 @@ export default function CompanyList() {
             el.showClass = classes[0];
             assetClasses[classes[0]] = true;
           }
+          el.classesInArr = classes;
           return el;
         });
         setData(modifiedData);
@@ -87,6 +89,10 @@ export default function CompanyList() {
     searchFilter(initialList);
   }, [searchText]);
 
+  useEffect(() => {
+    showFilter();
+  }, [show]);
+
   const searchFilter = (data) => {
     const search = searchText.toLowerCase();
     const filteredList = [];
@@ -102,6 +108,18 @@ export default function CompanyList() {
       setData(filteredList);
     } else {
       setData(initialList);
+    }
+  };
+  const showFilter = () => {
+    let filteredList = [];
+
+    if (show === "allAssetClasses") {
+      setData(initialList);
+    } else if (show === "Multi Asset") {
+      filteredList = initialList.filter((el) => el.classesInArr.length > 1);
+    } else {
+      filteredList = initialList.filter((el) => el.classesInArr.includes(show));
+      setData(filteredList);
     }
   };
   if (isLoading)
@@ -181,7 +199,6 @@ export default function CompanyList() {
               </Text>
               <Box display={"inline-block"}>
                 <Select
-                  placeholder="All asset classes"
                   size={"sm"}
                   color={"white"}
                   borderRadius={"md"}
@@ -189,7 +206,14 @@ export default function CompanyList() {
                   outline={"none"}
                   _focusVisible={{ shadow: "outline" }}
                   _focus={{ shadow: "none" }}
+                  value={show}
+                  onChange={(e) => {
+                    setShow(e.target.value);
+                  }}
                 >
+                  <option key={"allAssetClasses"} value={"allAssetClasses"}>
+                    All Asset Classes
+                  </option>
                   {classes.map((singleClass) => (
                     <option key={singleClass} value={singleClass}>
                       {singleClass}
