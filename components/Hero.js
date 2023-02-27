@@ -16,7 +16,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-export default function Hero() {
+export default function Hero({ firstLine, secondLine, thirdLine }) {
   return (
     <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
       <Stack
@@ -32,16 +32,20 @@ export default function Hero() {
             fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
           >
             <Text as={"span"} color={"#D1ED82"}>
-              Best
+              {firstLine}
             </Text>
             <br />
-            <Text as={"span"} color={"white"}>
-              Investment
-            </Text>
+            {secondLine ? (
+              <Text as={"span"} color={"white"}>
+                {secondLine}
+              </Text>
+            ) : null}
             <br />
-            <Text as={"span"} color={"white"}>
-              List 2023
-            </Text>
+            {thirdLine ? (
+              <Text as={"span"} color={"white"}>
+                {thirdLine}
+              </Text>
+            ) : null}
           </Heading>
         </Stack>
         <Flex

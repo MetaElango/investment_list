@@ -108,6 +108,7 @@ export default function CompanyList() {
       setData(filteredList);
     } else {
       setData(initialList);
+      showFilter();
     }
   };
   const showFilter = () => {

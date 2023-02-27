@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body style={{ backgroundColor: "#1D1D1D" }}>
         <CacheProvider>
           <ChakraProvider>
-            {/* <Navbar /> */}
+            <Navbar />
             {children}
           </ChakraProvider>
         </CacheProvider>
