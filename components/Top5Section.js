@@ -1,5 +1,3 @@
-"use client";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Container,
   Text,
@@ -10,15 +8,17 @@ import {
   Link,
   OrderedList,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { top5Data } from "./top5data";
+
 export default function Top5Section() {
   return (
     <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
       <Box
         width={[
           "100%", // 0-30em
-          "50%", // 30em-48em
-          "25%", // 48em-62em
+          "80%", // 30em-48em
+          "70%", // 48em-62em
           "60%", // 62em+
         ]}
         marginBottom={"5rem"}
@@ -40,17 +40,17 @@ export default function Top5Section() {
       <Box
         width={[
           "100%", // 0-30em
-          "50%", // 30em-48em
-          "25%", // 48em-62em
+          "80%", // 30em-48em
+          "70%", // 48em-62em
           "60%", // 62em+
         ]}
       >
-        {top5Data.map((el) => (
-          <Box>
+        {top5Data.map((el, index) => (
+          <Box key={`top5-single-0${index}`}>
             <Heading color="white" as={"h3"} id={el.id}>
               {el.name}- {el.rating}
             </Heading>
-            <Text color={"#ffffffb3"} fontWeight={"bold"} marginTop={"1rem"}>
+            <Text color={"#D1ED82"} fontWeight={"bold"} marginTop={"1rem"}>
               What is {el.name}?
             </Text>
             <Text color={"white"} marginTop={"1rem"}>
@@ -71,7 +71,7 @@ export default function Top5Section() {
             <Box marginTop={"1rem"}>
               <Text
                 as={"span"}
-                color={"#ffffffb3"}
+                color={"#D1ED82"}
                 marginTop={"1rem"}
                 fontWeight={"bold"}
               >
@@ -84,7 +84,7 @@ export default function Top5Section() {
             <Box marginTop={"1rem"}>
               <Text
                 as={"span"}
-                color={"#ffffffb3"}
+                color={"#D1ED82"}
                 marginTop={"1rem"}
                 fontWeight={"bold"}
               >
@@ -95,7 +95,7 @@ export default function Top5Section() {
               </Text>
             </Box>
             <Box marginTop={"1rem"}>
-              <Text color={"#ffffffb3"} fontWeight={"bold"}>
+              <Text color={"#D1ED82"} fontWeight={"bold"}>
                 Pros:
               </Text>
               <UnorderedList paddingLeft={"2rem"}>
@@ -111,7 +111,7 @@ export default function Top5Section() {
               </UnorderedList>
             </Box>
             <Box marginTop={"1rem"} marginBottom={"5rem"}>
-              <Text color={"#ffffffb3"} fontWeight={"bold"}>
+              <Text color={"#D1ED82"} fontWeight={"bold"}>
                 Cons:
               </Text>
               <UnorderedList paddingLeft={"2rem"}>

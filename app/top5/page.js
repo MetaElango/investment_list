@@ -1,3 +1,5 @@
+"use client";
+
 import Hero from "@/components/Hero";
 import Top5Section from "@/components/Top5Section";
 

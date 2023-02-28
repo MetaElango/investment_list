@@ -56,7 +56,7 @@ export const top5Data = [
   {
     id: "second",
     name: "Cadre",
-    rating: "3.5",
+    rating: "4.7",
     link: "https://cadre.com/",
     linkPara: `is a financial technology company based in New York that provides a unique platform for individuals and institutions to directly invest in large commercial properties. Unlike traditional real estate investing, Cadre's platform allows investors to select specific transactions to participate in and invest a smaller amount than what is typically required for a full transaction. Additionally, Cadre offers a managed portfolio service, a real estate secondary market, and a cash holdings account called "Cadre Cash". The company has received funding from various venture capital sources, including Thrive Capital and General Catalyst, which invested $18 million during a 2015 fundraising round. Cadre was also recognized as one of Forbes' "FinTech50" companies for four consecutive years starting in 2016.`,
     paras: [
@@ -82,7 +82,7 @@ export const top5Data = [
   {
     id: "third",
     name: "FarmTogether",
-    rating: "4.0",
+    rating: "4.6",
     link: "https://farmtogether.com/",
     linkPara: `is a farmland investment manager that enables accredited investors to invest in US farmland. The investment in farmland has been historically popular among ultra-wealthy investors, as it has a slow, steady, and stable return and is historically uncorrelated to any other index. However, investing in farmland has been challenging due to factors such as knowledge of the market, location in rural areas, and high prices.`,
     paras: [
@@ -110,7 +110,7 @@ export const top5Data = [
   {
     id: "fourth",
     name: "Royalty exchange",
-    rating: "3.5",
+    rating: "4.5",
     link: "https://www.royaltyexchange.com/",
     linkPara: `Royalties are a common way for musicians and authors to earn money, with some earning millions of dollars, even long after their death. However, smaller artists may not have access to the same opportunities as big names signed by major record labels or investors. This is where Royalty Exchange comes in. It is an online marketplace that connects investors seeking high yields with artists who want upfront money for their royalties.`,
     paras: [
@@ -139,7 +139,7 @@ export const top5Data = [
   {
     id: "fifth",
     name: "Forge",
-    rating: "3.0",
+    rating: "4.5",
     link: "https://forgeglobal.com/",
     linkPara: `is an investment platform that enables both individual and institutional investors to invest in privately traded companies and startups. The platform provides a valuable service for large funds that want to diversify into this asset class. Investors can express interest in a particular company, and Forge Global works to locate available shares and facilitate the transaction. Forge Global is primarily focused on institutional investors, but individual investors can also invest on the platform as long as they meet strict requirements, such as being accredited and investing a minimum of $100,000 per company.`,
     paras: [

@@ -21,6 +21,7 @@ import {
   Link,
   Spinner,
   Select,
+  Tag,
 } from "@chakra-ui/react";
 import {
   ArrowForwardIcon,
@@ -332,6 +333,11 @@ export default function CompanyList() {
             <CardBody>
               <Heading py={"1"} size="lg" color={"white"}>
                 {el["COMPANY NAME"]}
+                {Boolean(Number(el["TOP 5"])) && (
+                  <Tag size={"sm"} verticalAlign="middle" marginLeft={"1rem"}>
+                    Top 5
+                  </Tag>
+                )}
               </Heading>
               <Text py={"1"} color={"#ffffffb3"}>
                 {el["DESCRIPTION"]}

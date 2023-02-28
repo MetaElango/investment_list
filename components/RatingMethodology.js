@@ -1,6 +1,6 @@
 // "use client";
 
-import { Container, Text, Box, Heading } from "@chakra-ui/react";
+import { Container, Text, Box } from "@chakra-ui/react";
 
 export default function RatingMethodology() {
   return (
@@ -8,8 +8,8 @@ export default function RatingMethodology() {
       <Box
         width={[
           "100%", // 0-30em
-          "50%", // 30em-48em
-          "25%", // 48em-62em
+          "80%", // 30em-48em
+          "70%", // 48em-62em
           "60%", // 62em+
         ]}
       >
