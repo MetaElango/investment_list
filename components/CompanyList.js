@@ -47,11 +47,14 @@ export default function CompanyList() {
   const [isLoading, setLoading] = useState(true);
   const [classes, setClasses] = useState([]);
   const [show, setShow] = useState("allAssetClasses");
-  const sortBy = [
-    { type: "top5", name: "Top 5" },
+  const [sortBy, setSortBy] = useState("ratings");
+  const sortByList = [
+    // { type: "top5", name: "Top 5" },
     { type: "ratings", name: "Ratings: High to Low" },
-    { type: "returns", name: "Returns: High to Low" },
+    // { type: "returns", name: "Returns: High to Low" },
   ];
+  const [currentFilteredList, setCurrentFilteredList] = useState([]);
+
   useEffect(() => {
     setLoading(true);
     fetch(
@@ -75,54 +78,66 @@ export default function CompanyList() {
           el.classesInArr = classes;
           return el;
         });
-        setData(modifiedData);
-        setLoading(false);
-        setInitialList(modifiedData);
+
         for (const [key, value] of Object.entries(assetClasses)) {
           assetClassesArr.push(key);
         }
         setClasses(assetClassesArr);
+        const sortedArray = sorting(sortBy, data);
+        setData(sortedArray);
+        setInitialList(sortedArray);
+        setCurrentFilteredList(sortedArray);
+        setLoading(false);
       });
   }, []);
-  useEffect(() => {
-    console.log("searchText", searchText);
-    searchFilter(initialList);
-  }, [searchText]);
+
+  const sorting = (type, list) => {
+    if (type === "ratings") {
+      const listArr = list;
+      listArr.sort((a, b) => b.RATINGS - a.RATINGS);
+      return listArr;
+    }
+  };
 
   useEffect(() => {
-    showFilter();
+    const showFilteredList = showFilter(show, initialList);
+    setCurrentFilteredList(showFilteredList);
   }, [show]);
+  useEffect(() => {
+    const searchFilteredList = searchFilter(searchText, currentFilteredList);
+    setData(searchFilteredList);
+  }, [searchText, currentFilteredList]);
+  // useEffect(() => {}, [currentFilteredList]);
 
-  const searchFilter = (data) => {
-    const search = searchText.toLowerCase();
+  const searchFilter = (text, list) => {
+    const search = text.toLowerCase().trim();
     const filteredList = [];
-    data.forEach((el) => {
-      const company = el["COMPANY NAME"].toLowerCase();
-      const assetClass = el["CLASS"].toLowerCase();
-
-      if (assetClass.includes(search) || company.includes(search)) {
-        filteredList.push(el);
-      }
-    });
     if (search.length > 0) {
-      setData(filteredList);
+      list.forEach((el) => {
+        const company = el["COMPANY NAME"].toLowerCase();
+        const assetClass = el["CLASS"].toLowerCase();
+        if (assetClass.includes(search) || company.includes(search)) {
+          filteredList.push(el);
+        }
+      });
+    }
+    if (search.length > 0) {
+      return filteredList;
     } else {
-      setData(initialList);
-      showFilter();
+      return currentFilteredList;
     }
   };
   const showFilter = () => {
     let filteredList = [];
 
     if (show === "allAssetClasses") {
-      setData(initialList);
-    } else if (show === "Multi Asset") {
-      filteredList = initialList.filter((el) => el.classesInArr.length > 1);
+      return initialList;
     } else {
       filteredList = initialList.filter((el) => el.classesInArr.includes(show));
-      setData(filteredList);
+      return filteredList;
     }
   };
+
   if (isLoading)
     return (
       <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
@@ -250,10 +265,14 @@ export default function CompanyList() {
                   outline={"none"}
                   _focusVisible={{ shadow: "outline" }}
                   _focus={{ shadow: "none" }}
+                  value={sortBy}
+                  onChange={(e) => {
+                    setSortBy(e.target.value);
+                  }}
                 >
-                  {sortBy.map((sortByEl, index) => (
+                  {sortByList.map((sortByEl, index) => (
                     <option
-                      selected={index === 2}
+                      // selected={index === 2}
                       key={sortByEl.type}
                       value={sortByEl.type}
                     >
@@ -396,3 +415,43 @@ export default function CompanyList() {
     </Container>
   );
 }
+
+// useEffect(() => {
+//   console.log("searchText", searchText);
+//   searchFilter(initialList);
+// }, [searchText]);
+
+// useEffect(() => {
+//   showFilter();
+// }, [show]);
+
+// const searchFilter = (data) => {
+//   const search = searchText.toLowerCase();
+//   const filteredList = [];
+//   data.forEach((el) => {
+//     const company = el["COMPANY NAME"].toLowerCase();
+//     const assetClass = el["CLASS"].toLowerCase();
+
+//     if (assetClass.includes(search) || company.includes(search)) {
+//       filteredList.push(el);
+//     }
+//   });
+//   if (search.length > 0) {
+//     setData(filteredList);
+//   } else {
+//     setData(initialList);
+//     showFilter();
+//   }
+// };
+// const showFilter = () => {
+//   let filteredList = [];
+
+//   if (show === "allAssetClasses") {
+//     setData(initialList);
+//   } else if (show === "Multi Asset") {
+//     filteredList = initialList.filter((el) => el.classesInArr.length > 1);
+//   } else {
+//     filteredList = initialList.filter((el) => el.classesInArr.includes(show));
+//     setData(filteredList);
+//   }
+// };
