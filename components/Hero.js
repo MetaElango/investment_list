@@ -18,7 +18,7 @@ import {
 
 export default function Hero({ firstLine, secondLine, thirdLine }) {
   return (
-    <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
+    <Container maxW={"7xl"} backgroundColor={"#070533"}>
       <Stack
         align={"start"}
         spacing={{ base: 8, md: 10 }}
@@ -88,7 +88,7 @@ export default function Hero({ firstLine, secondLine, thirdLine }) {
             alt={"Hero Image"}
             fit={"cover"}
             align={"center"}
-            w={"35%"}
+            w={"36%"}
             h={"100%"}
             src={"./graphic.png"}
           />

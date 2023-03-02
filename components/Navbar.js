@@ -15,6 +15,7 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
@@ -48,7 +49,7 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box bg={useColorModeValue("#1D1D1D", "#1D1D1D")} px={4}>
+    <Box bg={useColorModeValue("#070533", "#070533")} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <IconButton
           size={"md"}
@@ -58,7 +59,16 @@ export default function Navbar() {
           onClick={isOpen ? onClose : onOpen}
         />
         <HStack spacing={8} alignItems={"center"} marginLeft="8%">
-          <Box color={"white"}>Logo</Box>
+          <Link as={NextLink} href="/">
+            <Image
+              alt={"BIL Logo"}
+              fit={"cover"}
+              align={"center"}
+              w={"50%"}
+              h={"100%"}
+              src={"./bil.png"}
+            />
+          </Link>
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
             {Links.map((link) => (
               <NavLink key={link.name}>{link}</NavLink>

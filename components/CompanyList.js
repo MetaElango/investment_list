@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Multiselect from "multiselect-react-dropdown";
 
 import {
   Container,
@@ -141,7 +142,7 @@ export default function CompanyList() {
 
   if (isLoading)
     return (
-      <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
+      <Container maxW={"7xl"} backgroundColor={"#070533"}>
         <Flex alignItems={"center"} justifyContent={"center"}>
           <Spinner color="white" size={"xl"} />
         </Flex>
@@ -149,13 +150,13 @@ export default function CompanyList() {
     );
 
   return (
-    <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
+    <Container maxW={"7xl"} backgroundColor={"#070533"}>
       <Box
         position="sticky"
         top={"0"}
         left={"0"}
         zIndex={"1000"}
-        backgroundColor={"#1D1D1D"}
+        backgroundColor={"#070533"}
         py={"5"}
       >
         <Stack spacing={4}>
@@ -215,7 +216,7 @@ export default function CompanyList() {
                 Show
               </Text>
               <Box display={"inline-block"}>
-                <Select
+                {/* <Select
                   size={"sm"}
                   color={"white"}
                   borderRadius={"md"}
@@ -236,7 +237,36 @@ export default function CompanyList() {
                       {singleClass}
                     </option>
                   ))}
-                </Select>
+                </Select> */}
+                <Multiselect
+                  showArrow={true}
+                  avoidHighlightFirstOption={true}
+                  hidePlaceholder={true}
+                  selectedValueDecorator={() => {
+                    return <div>selected one value</div>;
+                  }}
+                  isObject={false}
+                  showCheckbox={true}
+                  options={classes}
+                  placeholder={"All asset classes"}
+                  style={{
+                    chips: {
+                      background: "red",
+                      display: "none",
+                    },
+                    searchBox: {
+                      // To change search box element look
+                      border: "none",
+                      color: "white",
+                      fontSize: "14px",
+                    },
+                  }}
+                  // Options to display in the dropdown
+                  // selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
+                  // onSelect={this.onSelect} // Function will trigger on select event
+                  // onRemove={this.onRemove} // Function will trigger on remove event
+                  // displayValue="name" // Property name to display in the dropdown options
+                />
               </Box>
             </Box>
             <Box
@@ -292,7 +322,7 @@ export default function CompanyList() {
         py={"10"}
       >
         {data.map((el) => (
-          <Card key={el["RANDOM ID"]} backgroundColor={"#222222"}>
+          <Card key={el["RANDOM ID"]} backgroundColor={"#1F1D44"}>
             <CardHeader>
               {/* <AspectRatio maxW="80px" ratio={4 / 3}> */}
               <Flex justifyContent={"space-between"}>

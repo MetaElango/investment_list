@@ -13,7 +13,7 @@ import { top5Data } from "./top5data";
 
 export default function Top5Section() {
   return (
-    <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
+    <Container maxW={"7xl"} backgroundColor={"#070533"}>
       <Box
         width={[
           "100%", // 0-30em

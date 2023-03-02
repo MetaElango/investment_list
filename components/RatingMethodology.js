@@ -4,7 +4,7 @@ import { Container, Text, Box } from "@chakra-ui/react";
 
 export default function RatingMethodology() {
   return (
-    <Container maxW={"7xl"} backgroundColor={"#1D1D1D"}>
+    <Container maxW={"7xl"} backgroundColor={"#070533"}>
       <Box
         width={[
           "100%", // 0-30em
