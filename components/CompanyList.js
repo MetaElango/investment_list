@@ -239,7 +239,7 @@ export default function CompanyList() {
                   ))}
                 </Select> */}
                 <Multiselect
-                  showArrow={true}
+                  // showArrow={true}
                   avoidHighlightFirstOption={true}
                   hidePlaceholder={true}
                   selectedValueDecorator={() => {
