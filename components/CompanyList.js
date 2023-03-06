@@ -48,8 +48,9 @@ export default function CompanyList() {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [classes, setClasses] = useState([]);
-  const [show, setShow] = useState("allAssetClasses");
+  const [show, setShow] = useState([]);
   const [sortBy, setSortBy] = useState("ratings");
+  const [showCount, setShowCount] = useState(0);
   const sortByList = [
     // { type: "top5", name: "Top 5" },
     { type: "ratings", name: "Ratings: High to Low" },
@@ -102,9 +103,10 @@ export default function CompanyList() {
   };
 
   useEffect(() => {
+    console.log("show useeffect is getting called", show);
     const showFilteredList = showFilter(show, initialList);
     setCurrentFilteredList(showFilteredList);
-  }, [show]);
+  }, [showCount]);
   useEffect(() => {
     const searchFilteredList = searchFilter(searchText, currentFilteredList);
     setData(searchFilteredList);
@@ -132,12 +134,22 @@ export default function CompanyList() {
   const showFilter = () => {
     let filteredList = [];
 
-    if (show === "allAssetClasses") {
+    if (show.length == 0) {
       return initialList;
     } else {
-      filteredList = initialList.filter((el) => el.classesInArr.includes(show));
+      filteredList = initialList.filter((el) => {
+        // console.log(el.classesInArr.some((ai) => show.includes(ai)));
+        return el.classesInArr.some((ai) => show.includes(ai));
+      });
+      // console.log(filteredList);
       return filteredList;
     }
+  };
+  const onFilterChange = (selectedList, selectedItem) => {
+    // console.log("onFilterChange", selectedList, selectedItem);
+    setShow(selectedList);
+    setShowCount(selectedList.length);
+    console.log("onFilter", show);
   };
 
   if (isLoading)
@@ -240,6 +252,7 @@ export default function CompanyList() {
                 </Select> */}
                 <Multiselect
                   // showArrow={true}
+                  isSearchable={"false"}
                   avoidHighlightFirstOption={true}
                   hidePlaceholder={true}
                   selectedValueDecorator={() => {
@@ -252,7 +265,7 @@ export default function CompanyList() {
                   style={{
                     chips: {
                       background: "red",
-                      display: "none",
+                      // display: "none",
                     },
                     searchBox: {
                       // To change search box element look
@@ -260,6 +273,12 @@ export default function CompanyList() {
                       color: "white",
                       fontSize: "14px",
                     },
+                  }}
+                  onSelect={(selectedList, selectedItem) => {
+                    onFilterChange(selectedList, selectedItem);
+                  }}
+                  onRemove={(selectedList, selectedItem) => {
+                    onFilterChange(selectedList, selectedItem);
                   }}
                   // Options to display in the dropdown
                   // selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
