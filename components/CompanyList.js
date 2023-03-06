@@ -265,7 +265,7 @@ export default function CompanyList() {
                   style={{
                     chips: {
                       background: "red",
-                      // display: "none",
+                      display: "none",
                     },
                     searchBox: {
                       // To change search box element look
