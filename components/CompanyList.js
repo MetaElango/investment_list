@@ -256,17 +256,17 @@ export default function CompanyList() {
                   avoidHighlightFirstOption={true}
                   hidePlaceholder={true}
                   selectedValueDecorator={() => {
-                    return <div>selected one value</div>;
+                    return <div>selected {`${showCount}`} asset classes</div>;
                   }}
                   isObject={false}
                   showCheckbox={true}
                   options={classes}
                   placeholder={"All asset classes"}
                   style={{
-                    chips: {
-                      background: "red",
-                      display: "none",
-                    },
+                    // chips: {
+                    //   background: "red",
+                    //   display: "none",
+                    // },
                     searchBox: {
                       // To change search box element look
                       border: "none",

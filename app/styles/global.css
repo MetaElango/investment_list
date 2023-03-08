@@ -1,0 +1,10 @@
+.chip {
+  color: #1f1d44 !important;
+  background: white !important;
+}
+.chip:not(:last-of-type) {
+  display: none;
+}
+.chip > img {
+  display: none;
+}

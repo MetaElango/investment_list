@@ -64,7 +64,7 @@ export default function Navbar() {
               alt={"BIL Logo"}
               fit={"cover"}
               align={"center"}
-              w={"50%"}
+              w={"75%"}
               h={"100%"}
               src={"./bil.png"}
             />
