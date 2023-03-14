@@ -54,7 +54,7 @@ export default function CompanyList() {
   const sortByList = [
     // { type: "top5", name: "Top 5" },
     { type: "ratings", name: "Ratings: High to Low" },
-    // { type: "returns", name: "Returns: High to Low" },
+    { type: "returns", name: "Returns: High to Low" },
   ];
   const [currentFilteredList, setCurrentFilteredList] = useState([]);
 
@@ -86,7 +86,7 @@ export default function CompanyList() {
           assetClassesArr.push(key);
         }
         setClasses(assetClassesArr);
-        const sortedArray = sorting(sortBy, data);
+        const sortedArray = sorting(sortBy, modifiedData);
         setData(sortedArray);
         setInitialList(sortedArray);
         setCurrentFilteredList(sortedArray);
@@ -94,10 +94,25 @@ export default function CompanyList() {
       });
   }, []);
 
+  useEffect(() => {
+    const sortedArray = sorting(sortBy, data);
+    console.log(sortedArray);
+    setData([...sortedArray]);
+    console.log(data);
+  }, [sortBy]);
+
   const sorting = (type, list) => {
     if (type === "ratings") {
       const listArr = list;
       listArr.sort((a, b) => b.RATINGS - a.RATINGS);
+      return listArr;
+    }
+    if (type === "returns") {
+      console.log("returns");
+      const listArr = list;
+      listArr.sort(
+        (a, b) => b["HISTORICAL RETURNS DEMO"] - a["HISTORICAL RETURNS DEMO"]
+      );
       return listArr;
     }
   };
@@ -457,7 +472,9 @@ export default function CompanyList() {
                     <Text marginLeft={"2"}>
                       Returns{" "}
                       <Text color={"#D1ED82"} as={"span"}>
-                        105%
+                        {el["HISTORICAL RETURNS DEMO"] > 0
+                          ? `${el["HISTORICAL RETURNS DEMO"]}%`
+                          : "N/A"}
                       </Text>
                     </Text>
                   </Flex>
