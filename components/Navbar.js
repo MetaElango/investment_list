@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import {
+  Container,
   Box,
   Flex,
   Avatar,
@@ -49,33 +50,38 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box bg={useColorModeValue("#070533", "#070533")} px={4}>
-      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-        <IconButton
-          size={"md"}
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label={"Open Menu"}
-          display={{ md: "none" }}
-          onClick={isOpen ? onClose : onOpen}
-        />
-        <HStack spacing={8} alignItems={"center"} marginLeft="8%">
-          <Link as={NextLink} href="/">
-            <Image
-              alt={"BIL Logo"}
-              fit={"cover"}
-              align={"center"}
-              w={"75%"}
-              h={"100%"}
-              src={"./bil.png"}
-            />
-          </Link>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-            {Links.map((link) => (
-              <NavLink key={link.name}>{link}</NavLink>
-            ))}
+    <Container maxW={"7xl"} backgroundColor={"#070533"}>
+      <Box bg={useColorModeValue("#070533", "#070533")}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+          <IconButton
+            size={"md"}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={"Open Menu"}
+            display={{ md: "none" }}
+            onClick={isOpen ? onClose : onOpen}
+          />
+          <HStack spacing={8} alignItems={"center"}>
+            <Link as={NextLink} href="/">
+              <Image
+                alt={"BIL Logo"}
+                fit={"cover"}
+                align={"center"}
+                w={"75%"}
+                h={"100%"}
+                src={"./bil.png"}
+              />
+            </Link>
+            <HStack
+              as={"nav"}
+              spacing={4}
+              display={{ base: "none", md: "flex" }}
+            >
+              {Links.map((link) => (
+                <NavLink key={link.name}>{link}</NavLink>
+              ))}
+            </HStack>
           </HStack>
-        </HStack>
-        {/* <Flex alignItems={"center"}>
+          {/* <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
               as={Button}
@@ -99,17 +105,18 @@ export default function Navbar() {
             </MenuList>
           </Menu>
         </Flex> */}
-      </Flex>
+        </Flex>
 
-      {isOpen ? (
-        <Box pb={4} display={{ md: "none" }}>
-          <Stack as={"nav"} spacing={4}>
-            {Links.map((link) => (
-              <NavLink key={link.name}>{link}</NavLink>
-            ))}
-          </Stack>
-        </Box>
-      ) : null}
-    </Box>
+        {isOpen ? (
+          <Box pb={4} display={{ md: "none" }}>
+            <Stack as={"nav"} spacing={4}>
+              {Links.map((link) => (
+                <NavLink key={link.name}>{link}</NavLink>
+              ))}
+            </Stack>
+          </Box>
+        ) : null}
+      </Box>
+    </Container>
   );
 }

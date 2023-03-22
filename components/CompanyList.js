@@ -473,7 +473,7 @@ export default function CompanyList() {
                       Returns{" "}
                       <Text color={"#D1ED82"} as={"span"}>
                         {el["HISTORICAL RETURNS DEMO"] > 0
-                          ? `${el["HISTORICAL RETURNS DEMO"]}%`
+                          ? `${el["HISTORICAL RETURNS"]}`
                           : "N/A"}
                       </Text>
                     </Text>
