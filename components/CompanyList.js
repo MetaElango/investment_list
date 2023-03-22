@@ -187,9 +187,9 @@ export default function CompanyList() {
         py={"5"}
       >
         <Stack spacing={4}>
-          <InputGroup border={"1px solid #ffffff1a"} borderRadius="md">
+          <InputGroup border={"1px solid #ffffff70"} borderRadius="md">
             <InputLeftElement pointerEvents="none">
-              <SearchIcon color="#ffffff1a" _hover={{ color: "#000000" }} />
+              <SearchIcon color="#ffffff70" _hover={{ color: "#000000" }} />
             </InputLeftElement>
             <Input
               type="tel"
@@ -198,7 +198,7 @@ export default function CompanyList() {
               outline={"none"}
               _focusVisible={{ shadow: "outline" }}
               _focus={{ shadow: "none" }}
-              _placeholder={{ color: "#ffffff1a" }}
+              _placeholder={{ color: "#ffffff70" }}
               value={searchText}
               onChange={(e) => {
                 setSearchText(e.target.value);
