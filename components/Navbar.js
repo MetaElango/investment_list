@@ -26,6 +26,7 @@ const Links = [
   { name: "Top 5", link: "top5" },
   { name: "Rating Methodology", link: "rating_methodology" },
   { name: "About", link: "about" },
+  { name: "Blogs", link: "blogs" },
 ];
 
 const NavLink = ({ children }) => (
