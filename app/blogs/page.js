@@ -15,16 +15,69 @@ import {
   useColorModeValue,
   Container,
   VStack,
+  SimpleGrid,
+  Stack,
 } from "@chakra-ui/react";
 import Hero from "@/components/Hero";
 import { useEffect, useState } from "react";
+
+const convertBlogDate = (blogDate) => {
+  // parse the given timestamp string into a Date object
+  const timestamp = new Date(blogDate);
+  const currentTimestampMs = Date.UTC(
+    new Date().getUTCFullYear(),
+    new Date().getUTCMonth(),
+    new Date().getUTCDate(),
+    new Date().getUTCHours(),
+    new Date().getUTCMinutes(),
+    new Date().getUTCSeconds(),
+    new Date().getUTCMilliseconds()
+  );
+
+  // calculate the time difference between the timestamp and the current time
+  const timeDiffMs = currentTimestampMs - timestamp;
+
+  // convert the time difference to hours
+  const hoursDiff = Math.round(timeDiffMs / (1000 * 60 * 60));
+
+  // format the output
+  let output;
+  if (hoursDiff < 1) {
+    output = "just now";
+  } else if (hoursDiff < 24) {
+    output = `${hoursDiff} hour${hoursDiff === 1 ? "" : "s"} ago`;
+  } else if (hoursDiff < 24 * 30) {
+    const daysDiff = Math.round(hoursDiff / 24);
+    output = `${daysDiff} day${daysDiff === 1 ? "" : "s"} ago`;
+  } else if (hoursDiff < 24 * 30 * 12) {
+    const monthsDiff = Math.round(hoursDiff / (24 * 30));
+    output = `${monthsDiff} month${monthsDiff === 1 ? "" : "s"} ago`;
+  } else {
+    const yearsDiff = Math.round(hoursDiff / (24 * 30 * 12));
+    output = `${yearsDiff} year${yearsDiff === 1 ? "" : "s"} ago`;
+  }
+
+  return output; // prints "1 year ago" (assuming the current date is April 11, 2023)
+};
+const IMAGE =
+  "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
+
 // import { Container } from "@chakra-ui/react";
 const BlogTags = (props) => {
   return (
-    <HStack spacing={2} marginTop={props.marginTop}>
+    <HStack
+      spacing={2}
+      marginTop={props.marginTop}
+      marginBottom={props.marginBottom}
+    >
       {props.tags.map((tag) => {
         return (
-          <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
+          <Tag
+            size={"md"}
+            variant="solid"
+            key={tag}
+            backgroundColor={"rgba(255, 255, 255, 0.1)"}
+          >
             {tag}
           </Tag>
         );
@@ -61,83 +114,78 @@ const Blogs = () => {
       .then((res) => res.json())
       .then((data) => {
         setBlogs(data);
+        console.log(data);
       });
   }, []);
   return (
     <>
-      {" "}
       <Hero firstLine="Our Latest" secondLine="Blogs" thirdLine={null} />
-      <Container maxW={"7xl"} p="12">
-        {blogs.map((el) => (
-          <Box
-            key={el.id}
-            marginTop={{ base: "1", sm: "5" }}
-            display="flex"
-            flexDirection={{ base: "column", sm: "row" }}
-            justifyContent="space-between"
-            backgroundColor={"#1f1d44"}
-            padding={"20px 10px"}
-            borderRadius="lg"
-          >
+      <Container maxW={"7xl"} backgroundColor={"#070533"}>
+        <SimpleGrid
+          spacing={8}
+          templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+          py={"10"}
+        >
+          {blogs.map((el) => (
             <Box
-              display="flex"
-              flex="1"
-              marginRight="3"
-              position="relative"
-              alignItems="baseline"
+              maxW={"445px"}
+              w={"full"}
+              bg={"#070533"}
+              boxShadow={"2xl"}
+              rounded={"md"}
+              p={6}
+              overflow={"hidden"}
+              border={"1px solid #2E2C60"}
+              borderRadius={"3xl"}
             >
-              <Box
-                width={{ base: "100%", sm: "85%" }}
-                zIndex="2"
-                marginLeft={{ base: "0", sm: "5%" }}
-                marginTop="5%"
-              >
-                <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                  <Image
-                    borderRadius="lg"
-                    src={
-                      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-                    }
-                    alt="some good alt text"
-                    objectFit="contain"
-                  />
-                </Link>
-              </Box>
-              {/* <Box zIndex="1" width="100%" position="absolute" height="100%">
-              <Box
-                bgGradient={useColorModeValue(
-                  "radial(orange.600 1px, transparent 1px)",
-                  "radial(orange.300 1px, transparent 1px)"
-                )}
-                backgroundSize="20px 20px"
-                opacity="0.4"
-                height="100%"
+              <Image
+                src={el.jetpack_featured_media_url || "./stock.jpeg"}
+                layout={"fill"}
+                borderRadius={"xl"}
+                mb={"1rem"}
               />
-            </Box> */}
-            </Box>
-            <Box
-              display="flex"
-              flex="1"
-              flexDirection="column"
-              justifyContent="center"
-              marginTop={{ base: "3", sm: "0" }}
-            >
-              <BlogTags tags={["Engineering", "Product"]} />
-              <Heading marginTop="1" color={"#ffffff"}>
-                <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+              <Stack>
+                {/* <Text
+                color={"green.500"}
+                textTransform={"uppercase"}
+                fontWeight={800}
+                fontSize={"sm"}
+                letterSpacing={1.1}
+              >
+                Blog
+              </Text> */}
+                <BlogTags
+                  tags={["Research"]}
+                  marginTop={"1rem"}
+                  marginBottom={"1rem"}
+                />
+                <Heading
+                  color={"white"}
+                  fontSize={"2xl"}
+                  fontFamily={"body"}
+                  marginTop={"2rem"}
+                >
                   {el.title.rendered}
-                </Link>
-              </Heading>
-              <Text as="p" marginTop="2" color="#ffffffb3" fontSize="lg">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </Text>
-              <BlogAuthor name="Elango" date={new Date(el.date)} />
+                </Heading>
+                <Text color={"rgba(255, 255, 255, 0.7)"} minHeight={"100px"}>
+                  {el.excerpt.rendered.replace(/<\/?p>/gi, "")}
+                </Text>
+              </Stack>
+              <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
+                {/* <Avatar
+                src={"https://avatars0.githubusercontent.com/u/1164541?v=4"}
+                alt={"Author"}
+              /> */}
+                <Stack direction={"column"} spacing={0} fontSize={"sm"}>
+                  {/* <Text fontWeight={600}>Achim Rolle</Text> */}
+                  <Text color={"rgba(255, 255, 255, 0.7)"}>
+                    {convertBlogDate("2023-04-11T14:55:04")}{" "}
+                  </Text>
+                </Stack>
+              </Stack>
             </Box>
-          </Box>
-        ))}
+          ))}
+        </SimpleGrid>
       </Container>
     </>
   );
