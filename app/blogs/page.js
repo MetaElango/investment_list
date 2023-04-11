@@ -3,6 +3,7 @@
 import {
   Box,
   Heading,
+  Flex,
   Link,
   Image,
   Text,
@@ -17,6 +18,7 @@ import {
   VStack,
   SimpleGrid,
   Stack,
+  Spinner,
 } from "@chakra-ui/react";
 import Hero from "@/components/Hero";
 import { useEffect, useState } from "react";
@@ -104,6 +106,8 @@ export const BlogAuthor = (props) => {
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("https://hedonovaagri.com/wp-json/wp/v2/posts", {
       headers: {
@@ -113,39 +117,48 @@ const Blogs = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        // setLoading(false);
+
         setBlogs(data);
-        console.log(data);
+        setLoading(false);
       });
   }, []);
   return (
     <>
       <Hero firstLine="Our Latest" secondLine="Blogs" thirdLine={null} />
-      <Container maxW={"7xl"} backgroundColor={"#070533"}>
-        <SimpleGrid
-          spacing={8}
-          templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-          py={"10"}
-        >
-          {blogs.map((el) => (
-            <Box
-              maxW={"445px"}
-              w={"full"}
-              bg={"#070533"}
-              boxShadow={"2xl"}
-              rounded={"md"}
-              p={6}
-              overflow={"hidden"}
-              border={"1px solid #2E2C60"}
-              borderRadius={"3xl"}
-            >
-              <Image
-                src={el.jetpack_featured_media_url || "./stock.jpeg"}
-                layout={"fill"}
-                borderRadius={"xl"}
-                mb={"1rem"}
-              />
-              <Stack>
-                {/* <Text
+      {isLoading ? (
+        <Container maxW={"7xl"} backgroundColor={"#070533"}>
+          <Flex alignItems={"center"} justifyContent={"center"}>
+            <Spinner color="white" size={"xl"} />
+          </Flex>
+        </Container>
+      ) : (
+        <Container maxW={"7xl"} backgroundColor={"#070533"}>
+          <SimpleGrid
+            spacing={8}
+            templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+            py={"10"}
+          >
+            {blogs.map((el) => (
+              <Box
+                maxW={"445px"}
+                w={"full"}
+                bg={"#070533"}
+                boxShadow={"2xl"}
+                rounded={"md"}
+                p={6}
+                overflow={"hidden"}
+                border={"1px solid #2E2C60"}
+                borderRadius={"3xl"}
+              >
+                <Image
+                  src={el.jetpack_featured_media_url || "./stock.jpeg"}
+                  layout={"fill"}
+                  borderRadius={"xl"}
+                  mb={"1rem"}
+                />
+                <Stack>
+                  {/* <Text
                 color={"green.500"}
                 textTransform={"uppercase"}
                 fontWeight={800}
@@ -154,39 +167,40 @@ const Blogs = () => {
               >
                 Blog
               </Text> */}
-                <BlogTags
-                  tags={["Research"]}
-                  marginTop={"1rem"}
-                  marginBottom={"1rem"}
-                />
-                <Heading
-                  color={"white"}
-                  fontSize={"2xl"}
-                  fontFamily={"body"}
-                  marginTop={"2rem"}
-                >
-                  {el.title.rendered}
-                </Heading>
-                <Text color={"rgba(255, 255, 255, 0.7)"} minHeight={"100px"}>
-                  {el.excerpt.rendered.replace(/<\/?p>/gi, "")}
-                </Text>
-              </Stack>
-              <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-                {/* <Avatar
+                  <BlogTags
+                    tags={["Research"]}
+                    marginTop={"1rem"}
+                    marginBottom={"1rem"}
+                  />
+                  <Heading
+                    color={"white"}
+                    fontSize={"2xl"}
+                    fontFamily={"body"}
+                    marginTop={"2rem"}
+                  >
+                    {el.title.rendered}
+                  </Heading>
+                  <Text color={"rgba(255, 255, 255, 0.7)"} minHeight={"100px"}>
+                    {el.excerpt.rendered.replace(/<\/?p>/gi, "")}
+                  </Text>
+                </Stack>
+                <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
+                  {/* <Avatar
                 src={"https://avatars0.githubusercontent.com/u/1164541?v=4"}
                 alt={"Author"}
               /> */}
-                <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-                  {/* <Text fontWeight={600}>Achim Rolle</Text> */}
-                  <Text color={"rgba(255, 255, 255, 0.7)"}>
-                    {convertBlogDate("2023-04-11T14:55:04")}{" "}
-                  </Text>
+                  <Stack direction={"column"} spacing={0} fontSize={"sm"}>
+                    {/* <Text fontWeight={600}>Achim Rolle</Text> */}
+                    <Text color={"rgba(255, 255, 255, 0.7)"}>
+                      {convertBlogDate("2023-04-11T14:55:04")}{" "}
+                    </Text>
+                  </Stack>
                 </Stack>
-              </Stack>
-            </Box>
-          ))}
-        </SimpleGrid>
-      </Container>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Container>
+      )}
     </>
   );
 };
