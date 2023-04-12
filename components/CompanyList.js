@@ -23,6 +23,7 @@ import {
   Spinner,
   Select,
   Tag,
+  HStack,
 } from "@chakra-ui/react";
 import {
   ArrowForwardIcon,
@@ -41,6 +42,18 @@ export const ReturnsIcon = createIcon({
     />
   ),
 });
+const InvestorTag = ({ investorType, name }) => {
+  return (
+    <Tag
+      size={"sm"}
+      variant="solid"
+      key={`${investorType}_${name}`}
+      backgroundColor={"rgba(255, 255, 255, 0.1)"}
+    >
+      {investorType}
+    </Tag>
+  );
+};
 
 export default function CompanyList() {
   const [data, setData] = useState([]);
@@ -357,7 +370,7 @@ export default function CompanyList() {
       >
         {data.map((el) => (
           <Card key={el["RANDOM ID"]} backgroundColor={"#1F1D44"}>
-            <CardHeader>
+            <CardHeader paddingBottom={"1rem"}>
               {/* <AspectRatio maxW="80px" ratio={4 / 3}> */}
               <Flex justifyContent={"space-between"}>
                 <Box backgroundColor={"white"} borderRadius={"md"}>
@@ -395,6 +408,26 @@ export default function CompanyList() {
               {/* </AspectRatio> */}
             </CardHeader>
             <CardBody>
+              <HStack marginBottom={"1rem"}>
+                {el["ACCREDITED INVESTOR"] == "TRUE" && (
+                  <InvestorTag
+                    investorType="Accredited"
+                    name={el["COMPANY NAME"]}
+                  />
+                )}
+                {el["NON - ACCREDITED INVESTOR"] == "TRUE" && (
+                  <InvestorTag
+                    investorType="Non Accredited"
+                    name={el["COMPANY NAME"]}
+                  />
+                )}
+                {el["INTERNATIONAL INVESTOR"] == "TRUE" && (
+                  <InvestorTag
+                    investorType="International"
+                    name={el["COMPANY NAME"]}
+                  />
+                )}
+              </HStack>
               <Heading py={"1"} size="lg" color={"white"}>
                 {el["COMPANY NAME"]}
                 {Boolean(Number(el["TOP 5"])) && (
