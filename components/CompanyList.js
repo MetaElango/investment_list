@@ -182,7 +182,7 @@ export default function CompanyList() {
 
   if (isLoading)
     return (
-      <Container maxW={"7xl"} backgroundColor={"#070533"}>
+      <Container maxW={"7xl"} backgroundColor={"#070533"} minH={"100vh"}>
         <Flex alignItems={"center"} justifyContent={"center"}>
           <Spinner color="white" size={"xl"} />
         </Flex>
@@ -190,7 +190,7 @@ export default function CompanyList() {
     );
 
   return (
-    <Container maxW={"7xl"} backgroundColor={"#070533"}>
+    <Container maxW={"7xl"} backgroundColor={"#070533"} minH={"100vh"}>
       <Box
         position="sticky"
         top={"0"}

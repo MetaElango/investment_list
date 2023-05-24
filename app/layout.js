@@ -5,6 +5,7 @@ import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider } from "@chakra-ui/react";
 import "./styles/global.css";
 import { Analytics } from "@vercel/analytics/react";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({ children }) {
   return (
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <ChakraProvider>
             <Navbar />
             {children}
+            <Footer />
             <Analytics />
           </ChakraProvider>
         </CacheProvider>
