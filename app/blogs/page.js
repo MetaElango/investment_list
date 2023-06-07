@@ -73,7 +73,7 @@ const BlogTags = (props) => {
       marginTop={props.marginTop}
       marginBottom={props.marginBottom}
     >
-      {props.tags.map((tag) => {
+      {/* {props.tags.map((tag) => {
         return (
           <Tag
             size={"md"}
@@ -84,7 +84,7 @@ const BlogTags = (props) => {
             {tag}
           </Tag>
         );
-      })}
+      })} */}
     </HStack>
   );
 };
