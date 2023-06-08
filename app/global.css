@@ -1,0 +1,18 @@
+.blogs {
+  margin: 5rem 0;
+}
+
+.blogs h2 {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.blogs p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.blogs img {
+  margin: 1.5rem 0;
+}

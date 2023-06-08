@@ -69,7 +69,7 @@ export default function Navbar() {
                 align={"center"}
                 w={"75%"}
                 h={"100%"}
-                src={"./bil.png"}
+                src={"/bil.png"}
               />
             </Link>
             <HStack

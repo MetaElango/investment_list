@@ -1,4 +1,5 @@
 // "use client";
+import styles from "./styles.module.css";
 
 export async function generateStaticParams() {
   const res = await fetch(`https://hedonovaagri.com/wp-json/wp/v2/posts`, {
@@ -29,12 +30,15 @@ export default async function Post({ params }) {
         justifyContent: "center",
         minHeight: "100vh",
       }}
+      className="blogs"
     >
       <div style={{ width: "50%" }}>
-        <h1 style={{ color: "white", fontSize: "2rem" }}>
+        <h1 style={{ color: "white", fontSize: "2.2rem" }}>
           {post.title.rendered}
         </h1>
-        <p style={{ color: "#b1b1b1" }}>Created at: {post.date}</p>
+        <p style={{ color: "#b1b1b1", fontSize: "1rem" }}>
+          Created at: {post.date}
+        </p>
         <div
           style={{ color: "white" }}
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
