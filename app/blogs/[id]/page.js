@@ -39,10 +39,7 @@ export default async function Post({ params }) {
         <p style={{ color: "#b1b1b1", fontSize: "1rem" }}>
           Created at: {post.date}
         </p>
-        <div
-          style={{ color: "white" }}
-          dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-        />{" "}
+        <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />{" "}
       </div>
     </div>
   );
