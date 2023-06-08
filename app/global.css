@@ -1,32 +1,60 @@
-.blogs {
+.blog {
   margin: 5rem 0;
 }
-.blogs h1 {
+.blog h1 {
   color: white;
   font-weight: bold;
 }
 
-.blogs h2 {
+.blog h2 {
   font-size: 1.8rem;
   margin-top: 3rem;
   margin-bottom: 1rem;
   color: white;
 }
-.blogs p {
+.blog p {
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 1.2rem;
   color: #ccc;
 }
 
-.blogs img {
+.blog img {
   margin: 2rem 0;
 }
 
-.blogs ul {
+.blog ul {
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: 1rem;
   font-size: 1.2rem;
   color: #ccc;
+}
+
+.blog ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Media Query for Phones */
+@media (max-width: 767px) {
+  /* CSS styles specific to phones */
+  .blog .blog-container {
+    width: 90%;
+  }
+}
+
+/* Media Query for Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* CSS styles specific to tablets */
+  .blog .blog-container {
+    width: 80%;
+  }
+}
+
+/* Media Query for Desktops */
+@media (min-width: 1024px) {
+  /* CSS styles specific to desktops */
+  .blog .blog-container {
+    width: 50%;
+  }
 }
