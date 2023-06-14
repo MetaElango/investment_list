@@ -25,7 +25,14 @@ const ScrollButton = () => {
     });
   };
 
-  window.addEventListener("scroll", toggleVisible);
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisible);
+
+    window.navigator.geolocation.getCurrentPosition(
+      (newPos) => setPosition(newPos),
+      console.error
+    );
+  }, []);
 
   return (
     <Button>
