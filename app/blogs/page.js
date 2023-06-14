@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Box,
   Heading,
@@ -27,6 +26,9 @@ import {
 import NextLink from "next/link";
 import Hero from "@/components/Hero";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import ScrollButton from "@/components/scrollButton/ScrollButton";
 
 const convertBlogDate = (blogDate) => {
   // parse the given timestamp string into a Date object
@@ -77,6 +79,8 @@ const joinString = (htmlString, link) => {
 };
 
 const Blogs = () => {
+  const router = useRouter();
+
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -94,6 +98,9 @@ const Blogs = () => {
         setLoading(false);
       });
   }, []);
+  useEffect(() => {
+    setLoading(true);
+  }, [router]);
 
   return (
     <>
@@ -186,6 +193,7 @@ const Blogs = () => {
           </SimpleGrid>
         </Container>
       )}
+      <ScrollButton />
     </>
   );
 };
