@@ -90,7 +90,7 @@ export default function Hero({ firstLine, secondLine, thirdLine }) {
             align={"center"}
             w={"36%"}
             h={"100%"}
-            src={"./graphic.png"}
+            src={"/graphic.png"}
           />
           {/* </Box> */}
         </Flex>
