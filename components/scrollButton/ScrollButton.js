@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { Button } from "./Styles";
 
@@ -27,11 +27,6 @@ const ScrollButton = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", toggleVisible);
-
-    window.navigator.geolocation.getCurrentPosition(
-      (newPos) => setPosition(newPos),
-      console.error
-    );
   }, []);
 
   return (
