@@ -90,7 +90,6 @@ const Blogs = () => {
       .then((res) => res.json())
       .then((data) => {
         // setLoading(false);
-
         setBlogs(data);
         setLoading(false);
       });
@@ -172,7 +171,7 @@ const Blogs = () => {
                       display: "inline-block",
                     }}
                     dangerouslySetInnerHTML={{
-                      __html: joinString(el.excerpt.rendered, el.id),
+                      __html: joinString(el.excerpt.rendered, el.slug),
                     }}
                   ></div>
                 </CardBody>

@@ -1,19 +1,25 @@
 export async function generateStaticParams() {
-  const res = await fetch(`https://hedonovaagri.com/wp-json/wp/v2/posts`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `https://hedonovaagri.com/wp-json/wp/v2/posts?per_page=100`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
   const posts = await res.json();
-  return posts.map((el) => ({ id: el.id.toString() }));
+  return posts.map((el) => ({ slug: el.slug }));
 }
 
 async function getPost(params) {
   const res = await fetch(
-    `https://hedonovaagri.com/wp-json/wp/v2/posts/${params.id}`,
-    { next: { revalidate: 60 } }
+    `https://hedonovaagri.com/wp-json/wp/v2/posts?per_page=100`,
+    {
+      next: { revalidate: 60 },
+    }
   );
-  const post = await res.json();
+  const posts = await res.json();
+  const post = posts.filter((el) => el.slug === params.slug);
 
-  return post;
+  return post[0];
 }
 
 export default async function Post({ params }) {
