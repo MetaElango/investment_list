@@ -19,6 +19,10 @@ import {
   SimpleGrid,
   Stack,
   Spinner,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import Hero from "@/components/Hero";
@@ -62,47 +66,14 @@ const convertBlogDate = (blogDate) => {
 
   return output; // prints "1 year ago" (assuming the current date is April 11, 2023)
 };
-const IMAGE =
-  "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
 
-// import { Container } from "@chakra-ui/react";
-const BlogTags = (props) => {
-  return (
-    <HStack
-      spacing={2}
-      marginTop={props.marginTop}
-      marginBottom={props.marginBottom}
-    >
-      {/* {props.tags.map((tag) => {
-        return (
-          <Tag
-            size={"md"}
-            variant="solid"
-            key={tag}
-            backgroundColor={"rgba(255, 255, 255, 0.1)"}
-          >
-            {tag}
-          </Tag>
-        );
-      })} */}
-    </HStack>
-  );
-};
-
-export const BlogAuthor = (props) => {
-  return (
-    <HStack
-      marginTop="2"
-      spacing="2"
-      display="flex"
-      alignItems="center"
-      color="#ffffffb3"
-    >
-      <Text fontWeight="medium">{props.name}</Text>
-      <Text>—</Text>
-      <Text>{props.date.toLocaleDateString()}</Text>
-    </HStack>
-  );
+const joinString = (htmlString, link) => {
+  return htmlString
+    .replace("<p>", `<p style="display: inline">`)
+    .replace(
+      "\n",
+      `<a href="/blogs/${link}" style="display: inline; color: #D1ED82">...read more</a>`
+    );
 };
 
 const Blogs = () => {
@@ -124,6 +95,7 @@ const Blogs = () => {
         setLoading(false);
       });
   }, []);
+
   return (
     <>
       <Hero firstLine="Our Latest" secondLine="Blogs" thirdLine={null} />
@@ -137,74 +109,80 @@ const Blogs = () => {
         <Container maxW={"7xl"} backgroundColor={"#070533"} minH={"100vh"}>
           <SimpleGrid
             spacing={8}
-            templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+            templateColumns={{
+              base: "repeat(auto-fill, minmax(300px, 1fr))",
+              sm: "repeat(auto-fill, minmax(250px, 450px))",
+              md: "repeat(auto-fill, minmax(300px, 1fr))",
+              lg: "repeat(auto-fill, minmax(300px, 1fr))",
+              xl: "repeat(auto-fill, minmax(300px, 1fr))",
+              "2xl": "repeat(auto-fill, minmax(300px, 1fr))",
+            }}
             py={"10"}
           >
             {blogs.map((el) => (
-              <Link as={NextLink} href={`blogs/${el.id}`}>
-                <Box
-                  maxW={"445px"}
-                  w={"full"}
-                  bg={"#070533"}
-                  boxShadow={"2xl"}
-                  rounded={"md"}
-                  p={6}
-                  overflow={"hidden"}
-                  border={"1px solid #2E2C60"}
-                  borderRadius={"3xl"}
-                >
-                  <Image
-                    src={el.jetpack_featured_media_url || "./stock.jpeg"}
-                    layout={"fill"}
-                    borderRadius={"xl"}
-                    mb={"1rem"}
-                    boxSize="22rem"
-                    objectFit="cover"
-                  />
-                  <Stack>
-                    {/* <Text
-                color={"green.500"}
-                textTransform={"uppercase"}
-                fontWeight={800}
-                fontSize={"sm"}
-                letterSpacing={1.1}
-              >
-                Blog
-              </Text> */}
-                    <BlogTags
-                      tags={["Research"]}
-                      marginTop={"1rem"}
-                      marginBottom={"1rem"}
+              // <Link as={NextLink} href={`blogs/${el.id}`}>
+              <Card backgroundColor={"#1F1D44"}>
+                <CardHeader>
+                  <Flex flexDirection="column">
+                    <Image
+                      color={"#bbb"}
+                      border={"1px solid #1F1D44"}
+                      src={el.jetpack_featured_media_url}
+                      alt={el.title.rendered}
+                      borderRadius={"md"}
+                      w={{
+                        base: "400px",
+                        // sm: "400px",
+                        // md: "",
+                        // lg: "",
+                        // xl: "",
+                        // "2xl": "",
+                      }}
+                      h={{
+                        base: "230px",
+                        // sm: "300px",
+                        // md: "",
+                        // lg: "",
+                        // xl: "",
+                        // "2xl": "",
+                      }}
+                      objectFit="cover"
                     />
                     <Heading
                       color={"white"}
-                      fontSize={"2xl"}
+                      fontSize={{ sm: "xl", base: "2xl" }}
                       fontFamily={"body"}
                       marginTop={"2rem"}
                     >
-                      {el.title.rendered}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: el.title.rendered,
+                        }}
+                      ></div>
                     </Heading>
-                    <Text
-                      color={"rgba(255, 255, 255, 0.7)"}
-                      minHeight={"100px"}
-                    >
-                      {el.excerpt.rendered.replace(/<\/?p>/gi, "")}
-                    </Text>
-                  </Stack>
-                  <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-                    {/* <Avatar
-                src={"https://avatars0.githubusercontent.com/u/1164541?v=4"}
-                alt={"Author"}
-              /> */}
-                    <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-                      {/* <Text fontWeight={600}>Achim Rolle</Text> */}
-                      <Text color={"rgba(255, 255, 255, 0.7)"}>
-                        {convertBlogDate(el.date)}{" "}
-                      </Text>
-                    </Stack>
-                  </Stack>
-                </Box>
-              </Link>
+                  </Flex>
+                </CardHeader>
+                <CardBody>
+                  {/* <Text color={"rgba(255, 255, 255, 0.7)"} minHeight={"100px"}>
+                    {el.excerpt.rendered.replace(/<\/?p>/gi, "")}
+                  </Text> */}
+                  <div
+                    style={{
+                      color: "rgba(255, 255, 255, 0.7)",
+                      display: "inline-block",
+                    }}
+                    dangerouslySetInnerHTML={{
+                      __html: joinString(el.excerpt.rendered, el.id),
+                    }}
+                  ></div>
+                </CardBody>
+                <CardFooter>
+                  <Text color={"rgba(255, 255, 255, 0.7)"}>
+                    {convertBlogDate(el.date)}{" "}
+                  </Text>
+                </CardFooter>
+              </Card>
+              // </Link>
             ))}
           </SimpleGrid>
         </Container>

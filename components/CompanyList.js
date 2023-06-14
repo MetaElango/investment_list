@@ -376,7 +376,7 @@ export default function CompanyList() {
                 <Box backgroundColor={"white"} borderRadius={"md"}>
                   <Image
                     src={el["LOGO LINK"]}
-                    alt="naruto"
+                    alt={el["COMPANY NAME"]}
                     objectFit="cover"
                     width={"50px"}
                   />
