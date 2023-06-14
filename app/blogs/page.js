@@ -110,7 +110,7 @@ const Blogs = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://hedonovaagri.com/wp-json/wp/v2/posts", {
+    fetch("https://hedonovaagri.com/wp-json/wp/v2/posts?per_page=100", {
       headers: {
         "Content-Type": "application/json",
         // "X-AUTH-TOKEN": "1903516d1dcbad06c75ff653443c1c36",
@@ -158,6 +158,8 @@ const Blogs = () => {
                     layout={"fill"}
                     borderRadius={"xl"}
                     mb={"1rem"}
+                    boxSize="22rem"
+                    objectFit="cover"
                   />
                   <Stack>
                     {/* <Text
