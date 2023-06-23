@@ -1,6 +1,6 @@
 export async function generateStaticParams() {
   const res = await fetch(
-    `https://hedonovaagri.com/wp-json/wp/v2/posts?per_page=500`,
+    `https://hedonovaagri.com/wp-json/wp/v2/posts?per_page=100`,
     {
       next: { revalidate: 60 },
     }
@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 
 async function getPost(params) {
   const res = await fetch(
-    `https://hedonovaagri.com/wp-json/wp/v2/posts?per_page=500`,
+    `https://hedonovaagri.com/wp-json/wp/v2/posts?per_page=100`,
     {
       next: { revalidate: 60 },
     }
