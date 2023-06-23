@@ -72,13 +72,10 @@ export default function Footer() {
             This website is operated and managed by Axba LLC, a company duly
             organized and existing under the laws of the State of Delaware. For
             any inquiries or concerns regarding the operation or content of this
-            website, you may contact Axba LLC directly at{" "}
-            <Link href="https://hello@hedonovaagri.com" target="_blank">
-              hello@hedonovaagri.com
-            </Link>{" "}
-            The information provided on this website is for general
-            informational purposes only. We strive to maintain accuracy but make
-            no representations or warranties about the completeness, accuracy,
+            website, you may contact Axba LLC directly at hello@axba.com The
+            information provided on this website is for general informational
+            purposes only. We strive to maintain accuracy but make no
+            representations or warranties about the completeness, accuracy,
             reliability, suitability, or availability of the website's content.
             Reliance on such information is at your own risk. The use of
             third-party names, trademarks, logos, or proprietary designations is
