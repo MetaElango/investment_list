@@ -69,11 +69,10 @@ export default function Footer() {
           align={{ base: "center", md: "center" }}
         >
           <Text width={"65%"} color={"#b3b3b3"} fontSize={"0.8rem"}>
-            This website is operated and managed by{" "}
-            <Link href="https://www.hedonova.io/">Hedonova LLC</Link>, a company
-            duly organized and existing under the laws of the State of Delaware.
-            For any inquiries or concerns regarding the operation or content of
-            this website, you may contact Hedonova LLC directly at{" "}
+            This website is operated and managed by Axba LLC, a company duly
+            organized and existing under the laws of the State of Delaware. For
+            any inquiries or concerns regarding the operation or content of this
+            website, you may contact Axba LLC directly at{" "}
             <Link href="https://hello@hedonovaagri.com" target="_blank">
               hello@hedonovaagri.com
             </Link>{" "}

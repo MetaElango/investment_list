@@ -18,9 +18,9 @@ export default function AboutSection() {
           insights to help investors make informed decisions. Our team is
           comprised of experienced professionals with a passion for finance, who
           have come together to share their knowledge and expertise with the
-          world. By leveraging the expertise of Hedonova's team, we aim to
-          provide our users with accurate and up-to-date information to make
-          informed investment decisions.
+          world. By leveraging the expertise of Axba's team, we aim to provide
+          our users with accurate and up-to-date information to make informed
+          investment decisions.
         </Text>
         <Text as={"p"} color={"white"} marginTop={"1rem"}>
           We believe that the key to successful investing lies in understanding
