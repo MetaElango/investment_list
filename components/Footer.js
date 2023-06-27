@@ -72,20 +72,20 @@ export default function Footer() {
             This website is operated and managed by Axba LLC, a company duly
             organized and existing under the laws of the State of Delaware. For
             any inquiries or concerns regarding the operation or content of this
-            website, you may contact Axba LLC directly at hello@axba.com The
-            information provided on this website is for general informational
-            purposes only. We strive to maintain accuracy but make no
-            representations or warranties about the completeness, accuracy,
-            reliability, suitability, or availability of the website's content.
-            Reliance on such information is at your own risk. The use of
-            third-party names, trademarks, logos, or proprietary designations is
-            purely for informational purposes and does not imply endorsement or
-            affiliation. All trademarks, registered trademarks, and logos belong
-            to their respective owners. We have no control over third-party
-            websites and disclaim liability for any damages incurred. We make no
-            warranties regarding website functionality or uninterrupted access.
-            Seek professional legal advice for your specific circumstances and
-            jurisdiction.
+            website, you may contact Axba LLC directly at
+            info@bestinvestmentlist.com The information provided on this website
+            is for general informational purposes only. We strive to maintain
+            accuracy but make no representations or warranties about the
+            completeness, accuracy, reliability, suitability, or availability of
+            the website's content. Reliance on such information is at your own
+            risk. The use of third-party names, trademarks, logos, or
+            proprietary designations is purely for informational purposes and
+            does not imply endorsement or affiliation. All trademarks,
+            registered trademarks, and logos belong to their respective owners.
+            We have no control over third-party websites and disclaim liability
+            for any damages incurred. We make no warranties regarding website
+            functionality or uninterrupted access. Seek professional legal
+            advice for your specific circumstances and jurisdiction.
           </Text>
           {/* <Stack direction={"row"} spacing={6}>
             <SocialButton label={"Twitter"} href={"#"}>
