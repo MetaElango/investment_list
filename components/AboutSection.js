@@ -20,7 +20,7 @@ export default function AboutSection() {
           have come together to share their knowledge and expertise with the
           world. By leveraging the expertise of Axba's team, we aim to provide
           our users with accurate and up-to-date information to make informed
-          investment decisions.
+          investment decisions
         </Text>
         <Text as={"p"} color={"white"} marginTop={"1rem"}>
           We believe that the key to successful investing lies in understanding
