@@ -1,59 +1,5 @@
 export const top5Data = [
   {
-    id: "first",
-    name: "Hedonova",
-    rating: "4.8",
-    link: "https://www.hedonova.io/",
-    linkPara: `A visionary hedge fund that brings a new era of investing to the
-      forefront. Founded in 2020 by Alexander Cavendish, CEO, and Suman
-      Bannerjee, CIO, Hedonova comprises a team of 16 seasoned
-      professionals including investors, lawyers, economists,
-      researchers, engineers, and marketers.`,
-    paras: [
-      `Hedonova's securities are SEC qualified, ensuring the highest
-      level of security and protection for investor funds. With a
-      globally diversified portfolio offering access to over 10
-      alternative assets, including works of art, high-yield real
-      estate, cutting-edge startups, cryptos, NFTs, Web3, the
-      agricultural economy, top university students, equipment
-      financing, media royalties, wine and more, Hedonova provides
-      investors with a new level of freedom and access to investment
-      opportunities not limited by political borders and national
-      policies.`,
-      `In the past, such investment options were only available to
-      high-net-worth individuals. However, Hedonova is open to everyone,
-      with smaller entry points to allow anyone who meets minimum
-      requirements access to these alternative investment opportunities.
-      Registered as a Delaware LLC 506(b) exempted company, Hedonova
-      offers a 100% tax pass-through, with investors paying taxes
-      according to local laws. The fund also provides professional
-      support for investors with regard to taxation, compliance, and
-      other related services.`,
-    ],
-    pros: [
-      `Barrier-free entry into alternative investments: Hedonova offers a simple and straightforward way for individuals to make alternative investments, regardless of prior expertise.`,
-
-      `Low investment threshold: The low minimum investment requirement of $5,000 makes Hedonova accessible to a wide range of investors, both inside and outside of the U.S.`,
-
-      `Flexible investment options:  With no hold period, investors have the freedom to enter and exit the fund as they please, giving them greater control over their investments.`,
-
-      `Diversified portfolio: Hedonova provides access to a range of alternative assets through a single, globally diversified fund, giving investors the opportunity to diversify their investment portfolio and potentially increase returns.`,
-
-      `IRA and 401(k) investment options: Hedonova offers the ability for individuals to invest via their IRA or 401(k), allowing them to take advantage of the benefits of these investment vehicles while also accessing alternative assets.`,
-
-      `Open to all levels of investors: Hedonova is open to all investor levels, providing a level playing field for everyone to access alternative investment opportunities.`,
-    ],
-    cons: [
-      `Limited investment options: As a mutual fund, Hedonova only offers a single investment option, limiting the flexibility and choice available to investors.`,
-
-      `Lack of a proven track record: Being a relatively new company, Hedonova has a limited track record and it is too early to determine its long-term potential, making it a riskier investment choice for some investors.`,
-
-      `No individual control over asset allocation: Investors do not have the option to select the alternative asset allocation themselves, with the fund manager making all asset allocation decisions based on global market conditions and risk factors. This lack of control over investment strategy may be a disadvantage for some investors.`,
-    ],
-    minInv: `$5,000`,
-    asstClass: `Multi Asset class (10+ alternative assets)`,
-  },
-  {
     id: "second",
     name: "Cadre",
     rating: "4.7",
