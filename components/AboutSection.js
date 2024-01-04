@@ -1,9 +1,43 @@
 "use client";
-import { Container, Text, Box } from "@chakra-ui/react";
+import {
+  Container,
+  Text,
+  Box,
+  SimpleGrid,
+  Card,
+  CardHeader,
+  Heading,
+  CardBody,
+  CardFooter,
+  Button,
+} from "@chakra-ui/react";
 
 export default function AboutSection() {
   return (
     <Container maxW={"7xl"} backgroundColor={"#070533"}>
+      <SimpleGrid
+        spacing={4}
+        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      >
+        <Card>
+          <CardHeader>
+            <Heading size="md">Munish Kumar</Heading>
+            <Text size="sm">Director</Text>
+          </CardHeader>
+        </Card>
+        <Card>
+          <CardHeader>
+            <Heading size="md">vida@axba.com</Heading>
+            <Text size="sm">Email</Text>
+          </CardHeader>
+        </Card>
+        <Card>
+          <CardHeader>
+            <Heading size="md">+1 8126134812</Heading>
+            <Text size="sm">Phone number</Text>
+          </CardHeader>
+        </Card>
+      </SimpleGrid>
       <Box
         width={[
           "100%", // 0-30em
@@ -11,6 +45,7 @@ export default function AboutSection() {
           "70%", // 48em-62em
           "60%", // 62em+
         ]}
+        marginTop={"5rem"}
       >
         <Text as={"p"} color={"white"}>
           Best Investment List is a group of investment enthusiasts who are
