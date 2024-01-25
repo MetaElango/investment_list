@@ -27,7 +27,7 @@ export default function AboutSection() {
         </Card>
         <Card>
           <CardHeader>
-            <Heading size="md">vida@axba.com</Heading>
+            <Heading size="md">info@bestinvestmentlist.com</Heading>
             <Text size="sm">Email</Text>
           </CardHeader>
         </Card>
