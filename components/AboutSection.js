@@ -17,7 +17,7 @@ export default function AboutSection() {
     <Container maxW={"7xl"} backgroundColor={"#070533"}>
       <SimpleGrid
         spacing={4}
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+        templateColumns="repeat(auto-fill, minmax(310px, 1fr))"
       >
         <Card>
           <CardHeader>
