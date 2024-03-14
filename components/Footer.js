@@ -74,17 +74,16 @@ export default function Footer() {
             British Virgin Islands. For any inquiries or concerns regarding the
             operation or content of this website, you may contact Axba Holdings
             Limited directly at info@bestinvestmentlist.com or via phone at +1
-            812-613-4812. The Director of Axba Holdings Limited is Mr. Munish
-            Kumar. The information provided on this website is for general
-            informational purposes only. We strive to maintain accuracy but make
-            no representations or warranties about the completeness, accuracy,
-            reliability, suitability, or availability of the website's content.
-            Reliance on such information is strictly at your own risk. The use
-            of third-party names, trademarks, logos, or proprietary designations
-            on our website is purely for informational and identification
-            purposes and does not imply endorsement or affiliation. All
-            trademarks, registered trademarks, and logos belong to their
-            respective owners. We have no control over the content of
+            812-613-4812. The information provided on this website is for
+            general informational purposes only. We strive to maintain accuracy
+            but make no representations or warranties about the completeness,
+            accuracy, reliability, suitability, or availability of the website's
+            content. Reliance on such information is strictly at your own risk.
+            The use of third-party names, trademarks, logos, or proprietary
+            designations on our website is purely for informational and
+            identification purposes and does not imply endorsement or
+            affiliation. All trademarks, registered trademarks, and logos belong
+            to their respective owners. We have no control over the content of
             third-party websites and disclaim all liability for any damages that
             may arise from accessing or relying on them. Additionally, we do not
             warrant the functionality of this website or guarantee uninterrupted
