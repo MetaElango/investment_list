@@ -21,7 +21,7 @@ export default function AboutSection() {
       >
         <Card>
           <CardHeader>
-            <Heading size="md">Twinkle Khuman</Heading>
+            <Heading size="md">Munish Kumar</Heading>
             <Text size="sm">Director</Text>
           </CardHeader>
         </Card>
