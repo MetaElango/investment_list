@@ -19,12 +19,6 @@ export default function AboutSection() {
         spacing={4}
         templateColumns="repeat(auto-fill, minmax(310px, 1fr))"
       >
-        // <Card>
-        //   <CardHeader>
-        //     <Heading size="md">Twinkle Khuman</Heading>
-        //     <Text size="sm">Director</Text>
-        //   </CardHeader>
-        // </Card>
         <Card>
           <CardHeader>
             <Heading size="md">info@bestinvestmentlist.com</Heading>
